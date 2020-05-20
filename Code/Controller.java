@@ -42,6 +42,20 @@ public class Controller {
     }
 
     private void setResult(Double bmiValue) {
+        
+        try {
+            File file = new File("newFile.txt");
+            if(!file.exists())
+                file.createNewFile();
+
+            PrintWriter pw = new PrintWriter(file);
+            pw.print("Weight: "+userHeight.getText()+" height: ");
+            pw.println(userWeight.getText());
+            pw.close();
+        }catch (IOException e){
+            System.out.println("Error" + e);
+        }
+        
         valueOutput.setText(bmiValue.toString());
         if(bmiValue <= 18.5){
             statusOutput.setText("Under weight");
